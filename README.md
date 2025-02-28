@@ -11,10 +11,11 @@ We strongly recommend using Genesis as the base simulation.  [https://github.com
 🐛 Soft Robots -> good reference for how to simulate a soft object in Genesis
 https://dough-net.github.io/  -> further reading on why we want to work on deformable object manipulation.
 
-### Issues encountered (and how I fixed them)
+### Issues encountered (and how I fixed them[ish])
 - Encountoured error described in forum [here](https://github.com/Genesis-Embodied-AI/Genesis/issues/243](https://github.com/Genesis-Embodied-AI/Genesis/issues/243). Solution attempts included force installation ofgenesis-world==0.2.1 as described in the thread, but to no avail. I was able to install `genesis-world` only via Ubuntu shell (since Genisis has better support there).
-- Once installed, running `genisis_test.py` resulted in an error of the type described in [https://github.com/Genesis-Embodied-AI/Genesis/issues/246]. Re-installing WSL2 resolved this error, but resulted in something like the following: [https://github.com/Genesis-Embodied-AI/Genesis/issues/143]. A [thread](https://github.com/Genesis-Embodied-AI/Genesis/issues/12) revealed that Genisis cannot render in windows. I thought I'd try one more work-around by, rather than using a windows-linux subprocess, emulating the Ubuntu OS in VirtualBox, but this resulted in the same `OpenGL.error.Error: Attempt to retrieve context when no valid context`.
+- Once installed, running `genisis_test.py` resulted in an error of the type described in [https://github.com/Genesis-Embodied-AI/Genesis/issues/246]. Re-installing WSL2 resolved this error, but resulted in something like the following: [https://github.com/Genesis-Embodied-AI/Genesis/issues/143]. A [thread](https://github.com/Genesis-Embodied-AI/Genesis/issues/12) revealed that Genisis cannot render in Windows. I thought I'd try one more workaround by, rather than using a windows-linux subprocess, emulating the Ubuntu OS in VirtualBox, but this resulted in the same `OpenGL.error.Error: Attempt to retrieve context when no valid context`.
 
+Without much time left to work on this, it was time to shift gears....
 
 ## Automating point prompting for video segmentation 
 **Description**: 
@@ -24,7 +25,20 @@ More context for this task: when working with SAMv2, a state-of-the-art video se
 Useful Links:
 REU_example_input_video_SAM.mp4 use this video for input to your GUI 
 SAM 2: Segment Anything in Images and Videos | Research - AI at Meta: further readings on video segmentation
-Deliverables:
-Your code, pushed into a github repo 
-A video recording of your user interface functioning 
-A short description of the issues you encountered and how you fixed them
+
+### Setup
+Clone this repository and run the following:
+```
+pip install -r requirements.txt
+```
+Then you are free to run the python GUI like so:
+```
+python video_segmentation/video_segmentation.py
+```
+
+### Functioning Interface
+You can watch a video of the GUI in action [here](https://drive.google.com/file/d/1sgi5N4TY759ZvhCVwTlAG_SBTBSU0pmU/view?usp=sharing).
+
+### Issues encountered (and how I fixed them [for real, this time])
+Two features I implemented were a bit at odds for the majority of my implementing this project: the video scrubber and the marker ('x') drawer. It doesn't make sense for someone to be able to scrub to the next frame with an x atop an object it is no longer meant for due to the camera movement. To resolve this, I added a global "pause" variable that acts as a flag for when a user is and is not allowed to scrub through the video. Now, a user must select an "Annotate Frame" option and, only during that period where the frame is locked, may the user draw markers over the frame.
+
