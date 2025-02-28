@@ -1,4 +1,4 @@
-# REALab Undergrad Research Coding Assignment
+# REALLab Undergrad Research Coding Assignment
 
 ## Building a simulation environment for dough manipulation
 **Description**: 
@@ -11,14 +11,9 @@ We strongly recommend using Genesis as the base simulation.  [https://github.com
 🐛 Soft Robots -> good reference for how to simulate a soft object in Genesis
 https://dough-net.github.io/  -> further reading on why we want to work on deformable object manipulation.
 
-### A video showing your working robot or however far you got.
-[![Watch the video](Link to thumbnail)](Link to video)
-
 ### Issues encountered (and how I fixed them)
 - Encountoured error described in forum [here](https://github.com/Genesis-Embodied-AI/Genesis/issues/243](https://github.com/Genesis-Embodied-AI/Genesis/issues/243). Solution attempts included force installation ofgenesis-world==0.2.1 as described in the thread, but to no avail. I was able to install `genesis-world` only via Ubuntu shell (since Genisis has better support there).
-- Once installed, running `test.py` resulted in an error of the type described in [https://github.com/Genesis-Embodied-AI/Genesis/issues/246]. Re-installing WSL2 resolved this error, but resulted in something like the following: [https://github.com/Genesis-Embodied-AI/Genesis/issues/143]. A [thread](https://github.com/Genesis-Embodied-AI/Genesis/issues/12) revealed that Genisis cannot render in windows. I thought I'd try one more work-around by, rather than using a windows-linux subprocess, emulating the Ubuntu OS in VirtualBox.
-
-Resolving this involved
+- Once installed, running `test.py` resulted in an error of the type described in [https://github.com/Genesis-Embodied-AI/Genesis/issues/246]. Re-installing WSL2 resolved this error, but resulted in something like the following: [https://github.com/Genesis-Embodied-AI/Genesis/issues/143]. A [thread](https://github.com/Genesis-Embodied-AI/Genesis/issues/12) revealed that Genisis cannot render in windows. I thought I'd try one more work-around by, rather than using a windows-linux subprocess, emulating the Ubuntu OS in VirtualBox, but this resulted in the same `OpenGL.error.Error: Attempt to retrieve context when no valid context`.
 
 
 ## Automating point prompting for video segmentation 
