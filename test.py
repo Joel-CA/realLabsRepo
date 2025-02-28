@@ -1,4 +1,13 @@
-from OpenGL.GL import glGetUniformLocation as a
-from OpenGL.GL import glActiveTexture as b
-OpenGL.lazywrapper.lazy( 'glGetUniformLocation' )
-OpenGL.platform.baseplatform.glActiveTexture object at 0x000002845FD4C550>
+import genesis as gs
+gs.init(backend=gs.cpu)
+
+scene = gs.Scene(show_viewer=True)
+plane = scene.add_entity(gs.morphs.Plane())
+franka = scene.add_entity(
+    gs.morphs.MJCF(file='xml/franka_emika_panda/panda.xml'),
+)
+
+scene.build()
+
+for i in range(1000):
+    scene.step()
